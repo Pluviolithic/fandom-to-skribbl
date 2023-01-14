@@ -127,3 +127,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+#scraper output
+*.xml
+
+#list output file
+*.txt
