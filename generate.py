@@ -11,7 +11,7 @@ parser = argparse.ArgumentParser(
     description='Generate a randomized list of items for skribbl.io from a fandom.'
 )
 parser.add_argument('fandom', type=str, help='The fandom to generate items from.')
-parser.add_argument('category', type=str, help='The category to generate items from.')
+parser.add_argument('category', type=str, help='The category to generate items from.', nargs='+')
 
 args = parser.parse_args()
 
@@ -34,7 +34,7 @@ def main():
         elementText = getNodeText(element)
         itemName = getNodeText(element.parentNode.parentNode.getElementsByTagName('title')[0])
         
-        if ('[[Category:' + args.category + ']]')  in elementText:
+        if ('[[Category:' + ' '.join(args.category) + ']]')  in elementText:
             itemList.append(itemName)
             
     np.random.shuffle(itemList)
