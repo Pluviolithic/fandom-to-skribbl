@@ -36,15 +36,16 @@ def main():
         
         if ('[[Category:' + args.category + ']]')  in elementText:
             itemList.append(itemName)
+            
+    np.random.shuffle(itemList)
     
     validIndexEnd = 0
     totalCharacterCount = 0
-    np.random.shuffle(itemList)
+    
     for i in range(len(itemList)):
         if totalCharacterCount + len(itemList[i]) > skribblIOCharLimit:
             validIndexEnd = i
             break
-        print(totalCharacterCount)
         totalCharacterCount += len(itemList[i])
    
     if validIndexEnd != 0:
@@ -52,8 +53,6 @@ def main():
         
     itemListFile = open(args.fandom + '_list.txt', 'w')
     itemListFile.write(', '.join(itemList))
-            
-            
-            
+                    
 if __name__ == '__main__':
     main()
